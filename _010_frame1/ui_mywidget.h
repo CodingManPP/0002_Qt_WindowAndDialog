@@ -25,12 +25,13 @@ class Ui_MyWidget
 public:
     QFrame *frame;
     QLabel *label;
+    QLabel *label_2;
 
     void setupUi(QWidget *MyWidget)
     {
         if (MyWidget->objectName().isEmpty())
             MyWidget->setObjectName(QStringLiteral("MyWidget"));
-        MyWidget->resize(400, 300);
+        MyWidget->resize(635, 668);
         frame = new QFrame(MyWidget);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setGeometry(QRect(20, 10, 151, 121));
@@ -40,8 +41,11 @@ public:
         frame->setMidLineWidth(10);
         label = new QLabel(MyWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(30, 150, 171, 41));
+        label->setGeometry(QRect(270, 20, 191, 131));
         label->setAlignment(Qt::AlignCenter);
+        label_2 = new QLabel(MyWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(50, 160, 278, 364));
 
         retranslateUi(MyWidget);
 
@@ -52,6 +56,7 @@ public:
     {
         MyWidget->setWindowTitle(QApplication::translate("MyWidget", "MyWidget", Q_NULLPTR));
         label->setText(QApplication::translate("MyWidget", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; text-decoration: underline; color:#ff0000;\">\345\274\240\344\270\211\346\235\216\345\233\233\347\216\213\351\272\273\345\255\220</span></p></body></html>", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MyWidget", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };

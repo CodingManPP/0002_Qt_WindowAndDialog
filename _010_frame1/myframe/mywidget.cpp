@@ -1,5 +1,7 @@
 #include "mywidget.h"
 #include "ui_mywidget.h"
+#include <QMovie>
+#include <QPixmap>
 
 MyWidget::MyWidget(QWidget *parent) :
     QWidget(parent),
@@ -28,13 +30,25 @@ MyWidget::MyWidget(QWidget *parent) :
     font.setItalic(true);
     ui->label->setFont(font);
 
-
     /**
       * 【3】QFont
       */
     QString localTr = tr("标题太长，需要省略");
     QString localElidedText = ui->label->fontMetrics().elidedText(localTr,Qt::ElideRight,180);
     ui->label->setText(localElidedText);
+
+    /**
+      *【4】QLabel中添加一张照片
+      */
+    ui->label->setPixmap(QPixmap("G:/logo.png"));
+
+    /**
+      *【5】QLabel中添加一张gif
+      */
+    QMovie *movie = new QMovie("G:/1.gif");
+    ui->label_2->setMovie(movie);
+    movie->start();
+
 
 
 }

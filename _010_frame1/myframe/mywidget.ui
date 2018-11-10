@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>635</width>
+    <height>668</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,10 +38,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>150</y>
-     <width>171</width>
-     <height>41</height>
+     <x>270</x>
+     <y>20</y>
+     <width>191</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="text">
@@ -49,6 +49,19 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>160</y>
+     <width>278</width>
+     <height>364</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
    </property>
   </widget>
  </widget>
