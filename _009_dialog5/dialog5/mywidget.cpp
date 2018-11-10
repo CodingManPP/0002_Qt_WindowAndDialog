@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QColorDialog>
 
+#include <QFileDialog>
+
 MyWidget::MyWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MyWidget)
@@ -55,20 +57,52 @@ void MyWidget::on_pushButton_clicked()
 
 #endif
 
-
 }
 
+/* 文件对话框*/
+void MyWidget::on_pushButton_2_clicked()
+{
 
+#if 0
+    /**
+      * 功能：文件对话框选择文件，只能选择单个文件
+      * 参数1：指定父窗口
+      * 参数2：设置对话框标题
+      * 参数3：指定默认打开的目录路径
+      * 参数4：设置文件类型过滤器，如果不指定文件过滤器则默认显示选择所有类型的文件
+      * 注意：*png 和 *jpg 中间需要空格
+      */
+    QString fileName = QFileDialog::getOpenFileName(this,tr("文件对话框"),"H:",tr("图片文件(*png *jpg)"));
+    qDebug()<<"fileName"<<fileName;
+#endif
 
+#if 0
+    /**
+      * 功能：文件对话框选择文件，选择不同类型的文件
+      * 参数1：指定父窗口
+      * 参数2：设置对话框标题
+      * 参数3：指定默认打开的目录路径
+      * 参数4：设置文件类型过滤器，如果不指定文件过滤器则默认显示选择所有类型的文件
+      * 不同类型：需要使用“;;”隔开
+      */
+    QString fileName = QFileDialog::getOpenFileName(this,tr("文件对话框"),"H:",tr("图片文件(*png *jpg);;文本文件(*txt)"));
+    qDebug()<<"fileName"<<fileName;
+#endif
 
+#if 1
+    /**
+      * 功能：文件对话框选择文件，选择不同类型的多个文件，使用此函数getOpenFileNames
+      * 参数1：指定父窗口
+      * 参数2：设置对话框标题
+      * 参数3：指定默认打开的目录路径
+      * 参数4：设置文件类型过滤器，如果不指定文件过滤器则默认显示选择所有类型的文件
+      */
+    QStringList fileNames = QFileDialog::getOpenFileNames(this,tr("文件对话框"),"H:",tr("图片文件(*png *jpg);;文本文件(*txt)"));
+    qDebug()<<"fileNames"<<fileNames;
+    int fileNameSize = fileNames.size();
+    for (int i=0; i<fileNameSize; i++){
+       qDebug()<<fileNames.at(i)<<endl;
+    }
+#endif
 
-
-
-
-
-
-
-
-
-
-
+}
