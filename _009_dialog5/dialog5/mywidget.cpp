@@ -11,6 +11,8 @@
 
 #include <QMessageBox>
 
+#include <QProgressDialog>
+
 MyWidget::MyWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MyWidget)
@@ -206,6 +208,12 @@ void MyWidget::on_pushButton_4_clicked()
 /*【5】消息对话框*/
 void MyWidget::on_pushButton_5_clicked()
 {
+    /**
+      * 参数1：设置父窗口
+      * 参数2：设置标题栏
+      * 参数3：显示信息
+      * 参数4：具有的按钮
+      */
     //【5-1】问题对话框
     int ret1 = QMessageBox::question(this,tr("问题对话框"),tr("你了解Qt吗？"),QMessageBox::Yes,QMessageBox::No);
     if (ret1 == QMessageBox::Yes){
@@ -231,12 +239,38 @@ void MyWidget::on_pushButton_5_clicked()
     }
 
     //【5-5】关于对话框
+    // 没有返回值
     QMessageBox::about(this,tr("关于对话框"),tr("AAA通信制造"));
 
-
-
-
 }
+
+/*【6】进度对话框*/
+void MyWidget::on_pushButton_6_clicked()
+{
+    /**
+     * 参数1：设置对话框的标签内容
+     * 参数2：取消按钮显示的文本
+     * 参数3：最小值
+     * 参数4：最大值
+     * 参数5：父窗口
+     */
+    QProgressDialog dialog(tr("文件复制进度"),tr("取消"),0,50000,this);
+    dialog.setWindowTitle(tr("进度对话框"));         //设置窗口标题
+    dialog.setWindowModality(Qt::WindowModal);      //将对话框设置为模态
+    dialog.show();
+    for (int i=0; i<5000000; i++){                     //演示复制进度
+        dialog.setValue(i);                         //设置进度条的当前值
+        QCoreApplication::processEvents();          //避免界面冻结
+        if (dialog.wasCanceled()){                  //按下取消按钮则中断
+            break;
+        }
+    }
+
+    dialog.setValue(5000000); //设置此值才可以显示满100%，for循环中少加了一个数
+    qDebug()<<tr("复制结束！");
+}
+
+
 
 
 
