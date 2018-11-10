@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,6 +24,7 @@ class Ui_MyWidget
 {
 public:
     QFrame *frame;
+    QLabel *label;
 
     void setupUi(QWidget *MyWidget)
     {
@@ -31,11 +33,15 @@ public:
         MyWidget->resize(400, 300);
         frame = new QFrame(MyWidget);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(100, 60, 151, 121));
+        frame->setGeometry(QRect(20, 10, 151, 121));
         frame->setFrameShape(QFrame::Box);
         frame->setFrameShadow(QFrame::Sunken);
         frame->setLineWidth(5);
         frame->setMidLineWidth(10);
+        label = new QLabel(MyWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(30, 150, 171, 41));
+        label->setAlignment(Qt::AlignCenter);
 
         retranslateUi(MyWidget);
 
@@ -45,6 +51,7 @@ public:
     void retranslateUi(QWidget *MyWidget)
     {
         MyWidget->setWindowTitle(QApplication::translate("MyWidget", "MyWidget", Q_NULLPTR));
+        label->setText(QApplication::translate("MyWidget", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; text-decoration: underline; color:#ff0000;\">\345\274\240\344\270\211\346\235\216\345\233\233\347\216\213\351\272\273\345\255\220</span></p></body></html>", Q_NULLPTR));
     } // retranslateUi
 
 };
