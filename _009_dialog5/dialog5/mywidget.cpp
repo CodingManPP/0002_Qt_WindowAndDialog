@@ -20,6 +20,7 @@ MyWidget::MyWidget(QWidget *parent) :
     ui(new Ui::MyWidget)
 {
     ui->setupUi(this);
+    //声明变量QErrorMessage
     errordlg = new QErrorMessage(this);
 }
 
@@ -279,4 +280,33 @@ void MyWidget::on_pushButton_7_clicked()
     errordlg->setWindowTitle(tr("错误信息对话框"));
     //以非模态形式显示
     errordlg->showMessage(tr("这里是出错信息！"));
+}
+
+/*【8】创建向导页面*/
+QWizardPage * MyWidget::createPage1(){
+    QWizardPage *localQWizardPage = new QWizardPage;
+    localQWizardPage->setTitle(tr("介绍"));
+    return localQWizardPage;
+}
+
+QWizardPage * MyWidget::createPage2(){
+    QWizardPage *localQWizardPage = new QWizardPage;
+    localQWizardPage->setTitle(tr("用户选择信息"));
+    return localQWizardPage;
+}
+
+QWizardPage * MyWidget::createPage3(){
+    QWizardPage *localQWizardPage = new QWizardPage;
+    localQWizardPage->setTitle(tr("结束"));
+    return localQWizardPage;
+}
+
+void MyWidget::on_pushButton_8_clicked()
+{
+    QWizard wizard(this);
+    wizard.setWindowTitle(tr("向导对话框"));
+    wizard.addPage(createPage1());
+    wizard.addPage(createPage2());
+    wizard.addPage(createPage3());
+    wizard.exec();
 }

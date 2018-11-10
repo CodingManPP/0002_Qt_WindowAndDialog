@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <QWizard>
+
 //【注意】前置类的声明方式
 class QErrorMessage;
 
@@ -33,9 +35,15 @@ private slots:
 
     void on_pushButton_7_clicked();
 
+    void on_pushButton_8_clicked();
+
 private:
     Ui::MyWidget *ui;
     QErrorMessage *errordlg;
+
+    QWizardPage *createPage1(); //指针函数
+    QWizardPage *createPage2();
+    QWizardPage *createPage3();
 };
 
 #endif // MYWIDGET_H
