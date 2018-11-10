@@ -5,6 +5,8 @@
 
 #include <QFileDialog>
 
+#include <QFontDialog>
+
 MyWidget::MyWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MyWidget)
@@ -106,3 +108,29 @@ void MyWidget::on_pushButton_2_clicked()
 #endif
 
 }
+
+/*字体对话框*/
+void MyWidget::on_pushButton_3_clicked()
+{
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok,this);
+    if (ok){
+        ui->pushButton_3->setFont(font);
+    }else {
+        qDebug()<<tr("没有选中字体");
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
