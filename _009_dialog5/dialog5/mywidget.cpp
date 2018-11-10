@@ -9,6 +9,8 @@
 
 #include <QInputDialog>
 
+#include <QMessageBox>
+
 MyWidget::MyWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MyWidget)
@@ -179,7 +181,7 @@ void MyWidget::on_pushButton_4_clicked()
     if(ok){
         qDebug()<<"value2"<<value2;
     }
-    //【4-3】获取条目
+    //【4-4】获取条目
     /**
      * 功能：获取摸个范围内的整数值
      * 参数1：指定父窗口
@@ -200,3 +202,50 @@ void MyWidget::on_pushButton_4_clicked()
 
 
 }
+
+/*【5】消息对话框*/
+void MyWidget::on_pushButton_5_clicked()
+{
+    //【5-1】问题对话框
+    int ret1 = QMessageBox::question(this,tr("问题对话框"),tr("你了解Qt吗？"),QMessageBox::Yes,QMessageBox::No);
+    if (ret1 == QMessageBox::Yes){
+        qDebug()<<tr("问题！");
+    }
+
+    //【5-2】提示对话框
+    int ret2= QMessageBox::information(this,tr("提示对话框"),tr("这是书籍"),QMessageBox::Ok);
+    if (ret2 == QMessageBox::Ok){
+        qDebug()<<tr("提示");
+    }
+
+    //【5-3】警告对话框
+    int ret3 = QMessageBox::warning(this,tr("警告对话框"),tr("不能提前结束！"),QMessageBox::Abort);
+    if (ret3 == QMessageBox::Abort){
+        qDebug()<<tr("警告");
+    }
+
+    //【5-4】错误对话框
+    int ret4 = QMessageBox::critical(this,tr("严重错误对话框"),tr("发现一个严重错误！现在请关闭所有文件！"),QMessageBox::YesAll);
+    if (ret4 == QMessageBox::YesAll){
+        qDebug()<<tr("错误");
+    }
+
+    //【5-5】关于对话框
+    QMessageBox::about(this,tr("关于对话框"),tr("AAA通信制造"));
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
