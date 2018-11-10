@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 
@@ -26,6 +27,7 @@ public:
     QFrame *frame;
     QLabel *label;
     QLabel *label_2;
+    QLCDNumber *lcdNumber;
 
     void setupUi(QWidget *MyWidget)
     {
@@ -46,6 +48,15 @@ public:
         label_2 = new QLabel(MyWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(50, 160, 278, 364));
+        label_2->setAutoFillBackground(true);
+        lcdNumber = new QLCDNumber(MyWidget);
+        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setGeometry(QRect(400, 260, 181, 51));
+        lcdNumber->setSmallDecimalPoint(true);
+        lcdNumber->setDigitCount(7);
+        lcdNumber->setSegmentStyle(QLCDNumber::Flat);
+        lcdNumber->setProperty("value", QVariant(456123));
+        lcdNumber->setProperty("intValue", QVariant(456123));
 
         retranslateUi(MyWidget);
 

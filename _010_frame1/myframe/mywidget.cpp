@@ -49,6 +49,12 @@ MyWidget::MyWidget(QWidget *parent) :
     ui->label_2->setMovie(movie);
     movie->start();
 
+    /**
+      *【6】QLCDNumber显示数字
+      */
+    ui->lcdNumber->display(12563.02558);
+
+
 
 
 }
