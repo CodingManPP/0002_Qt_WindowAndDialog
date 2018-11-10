@@ -7,6 +7,8 @@
 
 #include <QFontDialog>
 
+#include <QInputDialog>
+
 MyWidget::MyWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MyWidget)
@@ -19,7 +21,7 @@ MyWidget::~MyWidget()
     delete ui;
 }
 
-/*【颜色对话框】*/
+/*【1】【颜色对话框】*/
 void MyWidget::on_pushButton_clicked()
 {
 #if 0
@@ -61,7 +63,7 @@ void MyWidget::on_pushButton_clicked()
 
 }
 
-/* 文件对话框*/
+/* 【2】文件对话框*/
 void MyWidget::on_pushButton_2_clicked()
 {
 
@@ -109,11 +111,14 @@ void MyWidget::on_pushButton_2_clicked()
 
 }
 
-/*字体对话框*/
+/*【3】字体对话框*/
 void MyWidget::on_pushButton_3_clicked()
 {
+    //用于标记是否单击了ok按钮
     bool ok;
     QFont font = QFontDialog::getFont(&ok,this);
+    //如果单机OK按钮，让"字体对话框"按钮使用新字体
+    //如果单机cancle，那么输出信息
     if (ok){
         ui->pushButton_3->setFont(font);
     }else {
@@ -122,15 +127,76 @@ void MyWidget::on_pushButton_3_clicked()
 
 }
 
+/*【4】输入对话框*/
+void MyWidget::on_pushButton_4_clicked()
+{
+    bool ok;
+    /*【4-1】获取字符串*/
+    /**
+     * 功能：获取字符串
+     * @brief string
+     * 参数1：指定父窗口
+     * 参数2：设置窗口标题
+     * 参数3：设置对话框中的标签显示文本
+     * 参数4：设置输入字符串的显示模式（密码显示成为小黑点，此处选择的是用户输入的实际内容）
+     * 参数5：设置输入框中的默认字符串
+     * 参数6：设置获取按下按钮信息的bool变量
+     */
+    QString string = QInputDialog::getText(this,tr("输入字符串对话框"),tr("请输入用户名："),QLineEdit::Normal,tr("admin"),&ok);
+    if (ok){
+        qDebug()<<"string"<<string;
+    }
+    /*【4-2】获取整数*/
+    /**
+     * 功能：获取摸个范围内的整数值
+     * 参数1：指定父窗口
+     * 参数2：设置窗口标题
+     * 参数3：设置对话框中的标签显示文本
+     * 参数4：默认数值
+     * 参数5：可以输入的最小值
+     * 参数6：可以输入的最大值
+     * 参数7：使用箭头按钮，数值每次变化的步进值
+     * 参数8：设置获取按下按钮信息的bool变量
+     */
+    int value1 = QInputDialog::getInt(this,tr("输入整数对话框"),tr("请输入-1000到1000之间的整数"),100,-1000,1000,10,&ok);
+    if (ok){
+        qDebug()<<"value1"<<value1;
+    }
+
+    //【4-3】获取浮点数
+    /**
+     * 功能：获取摸个范围内的整数值
+     * 参数1：指定父窗口
+     * 参数2：设置窗口标题
+     * 参数3：设置对话框中的标签显示文本
+     * 参数4：默认数值
+     * 参数5：可以输入的最小值
+     * 参数6：可以输入的最大值
+     * 参数7：小数的位数
+     * 参数8：设置获取按下按钮信息的bool变量
+     */
+    double value2 = QInputDialog::getDouble(this,tr("请输入浮点对话框"),tr("请输入-1000到1000之间的数值"),0.00,-1000,1000,2,&ok);
+    if(ok){
+        qDebug()<<"value2"<<value2;
+    }
+    //【4-3】获取条目
+    /**
+     * 功能：获取摸个范围内的整数值
+     * 参数1：指定父窗口
+     * 参数2：设置窗口标题
+     * 参数3：设置对话框中的标签显示文本
+     * 参数4：待选择的条目
+     * 参数6：默认选中的条目
+     * 参数7：条目是否可以被更改，true：可以更改；false：不可以更改
+     * 参数8：设置获取按下按钮信息的bool变量
+     */
+    QStringList items;
+    items<<tr("苹果")<<tr("香蕉")<<tr("梨子")<<tr("凤梨");
+    QString item = QInputDialog::getItem(this,tr("输入条目对话框"),tr("请选择或者输入一个条目"),items,0,true,&ok);
+    if (ok){
+        qDebug()<<"item"<<item;
+    }
 
 
 
-
-
-
-
-
-
-
-
-
+}
