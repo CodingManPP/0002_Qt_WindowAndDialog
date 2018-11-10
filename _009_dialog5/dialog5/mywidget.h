@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+//【注意】前置类的声明方式
+class QErrorMessage;
+
 namespace Ui {
 class MyWidget;
 }
@@ -28,8 +31,11 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_pushButton_7_clicked();
+
 private:
     Ui::MyWidget *ui;
+    QErrorMessage *errordlg;
 };
 
 #endif // MYWIDGET_H

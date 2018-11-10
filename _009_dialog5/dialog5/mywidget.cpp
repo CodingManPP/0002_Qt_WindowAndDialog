@@ -13,11 +13,14 @@
 
 #include <QProgressDialog>
 
+#include <QErrorMessage>
+
 MyWidget::MyWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MyWidget)
 {
     ui->setupUi(this);
+    errordlg = new QErrorMessage(this);
 }
 
 MyWidget::~MyWidget()
@@ -270,16 +273,10 @@ void MyWidget::on_pushButton_6_clicked()
     qDebug()<<tr("复制结束！");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*【7】错误信息对话框*/
+void MyWidget::on_pushButton_7_clicked()
+{
+    errordlg->setWindowTitle(tr("错误信息对话框"));
+    //以非模态形式显示
+    errordlg->showMessage(tr("这里是出错信息！"));
+}
