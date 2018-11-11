@@ -17,8 +17,10 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QToolBox>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -36,12 +38,18 @@ public:
     QLabel *label_3;
     QWidget *page_2;
     QLabel *label_4;
+    QWidget *page_3;
+    QLabel *label_5;
+    QToolBox *toolBox;
+    QWidget *page_4;
+    QWidget *page_6;
+    QWidget *page_5;
 
     void setupUi(QWidget *MyWidget)
     {
         if (MyWidget->objectName().isEmpty())
             MyWidget->setObjectName(QStringLiteral("MyWidget"));
-        MyWidget->resize(635, 668);
+        MyWidget->resize(635, 883);
         frame = new QFrame(MyWidget);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setGeometry(QRect(20, 10, 151, 121));
@@ -86,11 +94,33 @@ public:
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(10, 10, 54, 12));
         stackedWidget->addWidget(page_2);
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        label_5 = new QLabel(page_3);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(20, 30, 54, 12));
+        stackedWidget->addWidget(page_3);
+        toolBox = new QToolBox(MyWidget);
+        toolBox->setObjectName(QStringLiteral("toolBox"));
+        toolBox->setGeometry(QRect(50, 590, 69, 121));
+        toolBox->setFrameShape(QFrame::Box);
+        page_4 = new QWidget();
+        page_4->setObjectName(QStringLiteral("page_4"));
+        page_4->setGeometry(QRect(0, 0, 67, 41));
+        toolBox->addItem(page_4, QString::fromUtf8("\345\245\275\345\217\213"));
+        page_6 = new QWidget();
+        page_6->setObjectName(QStringLiteral("page_6"));
+        toolBox->addItem(page_6, QString::fromUtf8("\351\273\221\345\220\215\345\215\225"));
+        page_5 = new QWidget();
+        page_5->setObjectName(QStringLiteral("page_5"));
+        page_5->setGeometry(QRect(0, 0, 67, 41));
+        toolBox->addItem(page_5, QString::fromUtf8("\351\231\214\347\224\237\344\272\272"));
 
         retranslateUi(MyWidget);
         QObject::connect(listWidget, SIGNAL(currentRowChanged(int)), stackedWidget, SLOT(setCurrentIndex(int)));
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
+        toolBox->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MyWidget);
@@ -112,6 +142,10 @@ public:
 
         label_3->setText(QApplication::translate("MyWidget", "\347\254\254\344\270\200\351\241\265", Q_NULLPTR));
         label_4->setText(QApplication::translate("MyWidget", "\347\254\254\344\272\214\351\241\265", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MyWidget", "\347\254\254\344\270\211\351\241\265", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("MyWidget", "\345\245\275\345\217\213", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_6), QApplication::translate("MyWidget", "\351\273\221\345\220\215\345\215\225", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("MyWidget", "\351\231\214\347\224\237\344\272\272", Q_NULLPTR));
     } // retranslateUi
 
 };
