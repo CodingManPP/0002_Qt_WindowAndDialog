@@ -54,6 +54,13 @@ MyWidget::MyWidget(QWidget *parent) :
       */
     ui->lcdNumber->display(12563.02558);
 
+    /**
+      *【7】QStackedWidget
+      */
+
+
+
+
 
 
 

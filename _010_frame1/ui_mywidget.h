@@ -17,6 +17,8 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QListWidget>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,6 +30,12 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLCDNumber *lcdNumber;
+    QListWidget *listWidget;
+    QStackedWidget *stackedWidget;
+    QWidget *page;
+    QLabel *label_3;
+    QWidget *page_2;
+    QLabel *label_4;
 
     void setupUi(QWidget *MyWidget)
     {
@@ -57,8 +65,33 @@ public:
         lcdNumber->setSegmentStyle(QLCDNumber::Flat);
         lcdNumber->setProperty("value", QVariant(456123));
         lcdNumber->setProperty("intValue", QVariant(456123));
+        listWidget = new QListWidget(MyWidget);
+        new QListWidgetItem(listWidget);
+        new QListWidgetItem(listWidget);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setGeometry(QRect(360, 320, 256, 192));
+        stackedWidget = new QStackedWidget(MyWidget);
+        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
+        stackedWidget->setGeometry(QRect(380, 550, 120, 80));
+        stackedWidget->setFrameShape(QFrame::Panel);
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        label_3 = new QLabel(page);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(20, 10, 54, 12));
+        stackedWidget->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        label_4 = new QLabel(page_2);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(10, 10, 54, 12));
+        stackedWidget->addWidget(page_2);
 
         retranslateUi(MyWidget);
+        QObject::connect(listWidget, SIGNAL(currentRowChanged(int)), stackedWidget, SLOT(setCurrentIndex(int)));
+
+        stackedWidget->setCurrentIndex(1);
+
 
         QMetaObject::connectSlotsByName(MyWidget);
     } // setupUi
@@ -68,6 +101,17 @@ public:
         MyWidget->setWindowTitle(QApplication::translate("MyWidget", "MyWidget", Q_NULLPTR));
         label->setText(QApplication::translate("MyWidget", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; text-decoration: underline; color:#ff0000;\">\345\274\240\344\270\211\346\235\216\345\233\233\347\216\213\351\272\273\345\255\220</span></p></body></html>", Q_NULLPTR));
         label_2->setText(QApplication::translate("MyWidget", "TextLabel", Q_NULLPTR));
+
+        const bool __sortingEnabled = listWidget->isSortingEnabled();
+        listWidget->setSortingEnabled(false);
+        QListWidgetItem *___qlistwidgetitem = listWidget->item(0);
+        ___qlistwidgetitem->setText(QApplication::translate("MyWidget", "\347\254\254\344\270\200\351\241\265", Q_NULLPTR));
+        QListWidgetItem *___qlistwidgetitem1 = listWidget->item(1);
+        ___qlistwidgetitem1->setText(QApplication::translate("MyWidget", "\347\254\254\344\272\214\351\241\265", Q_NULLPTR));
+        listWidget->setSortingEnabled(__sortingEnabled);
+
+        label_3->setText(QApplication::translate("MyWidget", "\347\254\254\344\270\200\351\241\265", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MyWidget", "\347\254\254\344\272\214\351\241\265", Q_NULLPTR));
     } // retranslateUi
 
 };
