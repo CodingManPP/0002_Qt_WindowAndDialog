@@ -15,6 +15,11 @@ public:
     explicit MyWidget(QWidget *parent = 0);
     ~MyWidget();
 
+private slots:
+    void on_lineEdit_2_returnPressed();
+    
+    void on_lineEdit_3_returnPressed();
+
 private:
     Ui::MyWidget *ui;
 };
