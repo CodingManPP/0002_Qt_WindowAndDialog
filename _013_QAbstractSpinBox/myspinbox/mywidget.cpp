@@ -1,5 +1,6 @@
 #include "mywidget.h"
 #include "ui_mywidget.h"
+#include <QDebug>
 
 Mywidget::Mywidget(QWidget *parent) :
     QWidget(parent),
@@ -24,9 +25,18 @@ Mywidget::Mywidget(QWidget *parent) :
     ui->dateTimeEdit->setDisplayFormat(tr("yyyy年MM月dd日ddd HH时mm分ss秒zz毫秒"));
 
     ui->timeEdit->setDateTime(QDateTime::currentDateTime());
+
+    qDebug()<<ui->spinBox->value();
+
+
 }
 
 Mywidget::~Mywidget()
 {
     delete ui;
+}
+
+void Mywidget::on_spinBox_valueChanged(const QString &arg1)
+{
+    qDebug()<<ui->spinBox->value();
 }

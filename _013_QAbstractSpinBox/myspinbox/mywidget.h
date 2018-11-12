@@ -15,6 +15,9 @@ public:
     explicit Mywidget(QWidget *parent = 0);
     ~Mywidget();
 
+private slots:
+    void on_spinBox_valueChanged(const QString &arg1);
+
 private:
     Ui::Mywidget *ui;
 };

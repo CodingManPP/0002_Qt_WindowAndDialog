@@ -15,7 +15,10 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QWidget>
 
@@ -27,6 +30,10 @@ public:
     QTimeEdit *timeEdit;
     QDateEdit *dateEdit;
     QDateTimeEdit *dateTimeEdit;
+    QSpinBox *spinBox;
+    QDoubleSpinBox *doubleSpinBox;
+    QLabel *label;
+    QLabel *label_2;
 
     void setupUi(QWidget *Mywidget)
     {
@@ -43,6 +50,20 @@ public:
         dateTimeEdit = new QDateTimeEdit(Mywidget);
         dateTimeEdit->setObjectName(QStringLiteral("dateTimeEdit"));
         dateTimeEdit->setGeometry(QRect(20, 80, 231, 21));
+        spinBox = new QSpinBox(Mywidget);
+        spinBox->setObjectName(QStringLiteral("spinBox"));
+        spinBox->setGeometry(QRect(80, 140, 61, 21));
+        spinBox->setValue(99);
+        doubleSpinBox = new QDoubleSpinBox(Mywidget);
+        doubleSpinBox->setObjectName(QStringLiteral("doubleSpinBox"));
+        doubleSpinBox->setGeometry(QRect(80, 180, 62, 22));
+        doubleSpinBox->setDecimals(7);
+        label = new QLabel(Mywidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(20, 150, 54, 12));
+        label_2 = new QLabel(Mywidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(10, 180, 71, 16));
 
         retranslateUi(Mywidget);
 
@@ -53,6 +74,10 @@ public:
     {
         Mywidget->setWindowTitle(QApplication::translate("Mywidget", "Mywidget", Q_NULLPTR));
         timeEdit->setDisplayFormat(QApplication::translate("Mywidget", "H:mm:ssA", Q_NULLPTR));
+        spinBox->setSuffix(QApplication::translate("Mywidget", "%", Q_NULLPTR));
+        spinBox->setPrefix(QApplication::translate("Mywidget", "\357\277\245", Q_NULLPTR));
+        label->setText(QApplication::translate("Mywidget", "\350\256\276\347\275\256\346\225\264\346\225\260", Q_NULLPTR));
+        label_2->setText(QApplication::translate("Mywidget", "\350\256\276\347\275\256\346\265\256\347\202\271\346\225\260", Q_NULLPTR));
     } // retranslateUi
 
 };
